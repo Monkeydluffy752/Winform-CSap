@@ -1,0 +1,10 @@
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\bin\Debug\Project CSap.exe
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\bin\Debug\Project CSap.pdb
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project CSap.csprojAssemblyReference.cache
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project_CSap.Form1.resources
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project_CSap.Properties.Resources.resources
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project CSap.csproj.GenerateResource.cache
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project CSap.exe
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project CSap.pdb
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project_CSap.Login.resources
+C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\obj\Debug\Project_CSap.Registeration.resources
