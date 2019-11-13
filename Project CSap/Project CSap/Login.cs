@@ -32,26 +32,32 @@ namespace Project_CSap
             }
         }
 
-        private void btn_NutDangNhap_Click(object sender, EventArgs e)
+        private void btn_NutDangNhap_Click(object sender, EventArgs e) // Kiểm Tra đăng nhập tại đây
         {
             if(this.tb_TenTaiKhoan.Text.Length != 0 && this.tb_MatKhau.Text.Length != 0)
             {
-                MD5 md5hash = MD5.Create();
-                Registeration res = new Registeration();
-                string passwordHash =  res.GetMd5Hash(md5hash,this.tb_MatKhau.Text);
-                ConnectData connectData = new ConnectData();
-               if(connectData.CheckAccount(this.tb_TenTaiKhoan.Text, passwordHash) > 0)
+                try
                 {
-                    MessageBox.Show("Đung r");
-                }
-               else
+                    MD5 md5hash = MD5.Create();
+                    Registeration res = new Registeration();
+                    string passwordHash = res.GetMd5Hash(md5hash, this.tb_MatKhau.Text);
+                    ConnectData connectData = new ConnectData();
+                    if (connectData.CheckAccount(this.tb_TenTaiKhoan.Text, passwordHash) > 0)
+                    {
+                        Form1 f = new Form1();
+                        f.Show();
+                        this.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sai Mật Khẩu Hoặc Tài Khoản", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }catch(Exception)
                 {
-                    MessageBox.Show("Sai Mật Khẩu Hoặc Tài Khoản", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi Đường Truyền");
                 }
-
-
             }
-
         }
+
     }
 }

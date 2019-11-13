@@ -46,9 +46,15 @@ namespace Project_CSap
         private void btn_NutDangKy_Leave(object sender, EventArgs e)    // Nếu các text null thì báo lỗi
         {
             TextBox checkTextboxNull = sender as TextBox;
-            if (checkTextboxNull.Text.Length <= 0)
+            try
             {
-                errorProvider1.SetError(checkTextboxNull, "Chưa Có Phần Tử");
+                if (checkTextboxNull.Text.Length == 0)
+                {
+                    errorProvider1.SetError(checkTextboxNull, "Chưa Có Phần Tử");
+                }
+            }catch(Exception)
+            {
+                MessageBox.Show("Bạn Nhập Thiếu Phần Tử");
             }
 
         }

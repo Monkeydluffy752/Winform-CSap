@@ -16,17 +16,41 @@ namespace Project_CSap
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Login Login = new Login();
-            Login.MdiParent = this;
-            this.panel_Login.Controls.Add(Login);
-            Login.Show();
-        }
-
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            this.panel_Login.Location = new Point((this.Width - this.panel_Login.Width) / 2 - 5, this.panel_Login.Top);
+            this.panel_Login.Width = this.Width / 2;
+        }
+
+        private void mt_DangXuat_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            DialogResult result = MessageBox.Show("Bạn Muốn Đăng Xuất", "Thông Báo", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                this.Close();
+                login.Visible = true;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            PictureBox a = new PictureBox();
+            Button btn = new Button() { Text = "a",Location = new Point(222,213)};
+            this.Controls.Add(btn);
+            //a.Image = new Bitmap(Application.StartupPath + "\\Resource\\1.jpg");
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PictureBox a = new PictureBox();
+            Random rand = new Random();
+            Button btn = new Button() {Text = "a", Location = new Point(rand.Next(0,100),rand.Next(0,100))};
+            btn.Visible = true;
+            btn.Name = "ad";
+            this.panel_Login.Controls.Add(btn);
+            
+            //a.Image = new Bitmap(Application.StartupPath + "\\Resource\\1.jpg");
         }
     }
 }

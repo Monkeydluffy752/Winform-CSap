@@ -39,16 +39,16 @@
             this.tsl_CapNhatDanhSach = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mt_DangNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.mt_DangXuat = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel_Login = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Enabled = false;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.toolStripSeparator1,
@@ -59,7 +59,7 @@
             this.tsl_CapNhatDanhSach});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(797, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1154, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -121,57 +121,63 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Enabled = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(797, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1154, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mt_DangNhap,
             this.mt_DangXuat});
             this.settingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("settingToolStripMenuItem.Image")));
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
-            // mt_DangNhap
-            // 
-            this.mt_DangNhap.Image = ((System.Drawing.Image)(resources.GetObject("mt_DangNhap.Image")));
-            this.mt_DangNhap.Name = "mt_DangNhap";
-            this.mt_DangNhap.Size = new System.Drawing.Size(134, 22);
-            this.mt_DangNhap.Text = "Đăng Nhập";
-            // 
             // mt_DangXuat
             // 
             this.mt_DangXuat.Image = ((System.Drawing.Image)(resources.GetObject("mt_DangXuat.Image")));
             this.mt_DangXuat.Name = "mt_DangXuat";
-            this.mt_DangXuat.Size = new System.Drawing.Size(134, 22);
+            this.mt_DangXuat.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D4)));
+            this.mt_DangXuat.Size = new System.Drawing.Size(165, 22);
             this.mt_DangXuat.Text = "Đăng Xuất";
+            this.mt_DangXuat.Click += new System.EventHandler(this.mt_DangXuat_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(211, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel_Login
             // 
-            this.panel_Login.Location = new System.Drawing.Point(78, 103);
+            this.panel_Login.Controls.Add(this.button1);
+            this.panel_Login.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel_Login.Location = new System.Drawing.Point(0, 49);
             this.panel_Login.Name = "panel_Login";
-            this.panel_Login.Size = new System.Drawing.Size(658, 384);
+            this.panel_Login.Size = new System.Drawing.Size(614, 523);
             this.panel_Login.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 568);
+            this.ClientSize = new System.Drawing.Size(1154, 572);
             this.Controls.Add(this.panel_Login);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
@@ -179,6 +185,7 @@
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel_Login.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,8 +203,8 @@
         private System.Windows.Forms.ToolStripLabel tsl_CapNhatDanhSach;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mt_DangNhap;
         private System.Windows.Forms.ToolStripMenuItem mt_DangXuat;
+        private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Panel panel_Login;
     }
 }
