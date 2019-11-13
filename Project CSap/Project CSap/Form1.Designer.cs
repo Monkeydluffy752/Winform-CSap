@@ -144,14 +144,14 @@
             // 
             this.mt_DangNhap.Image = ((System.Drawing.Image)(resources.GetObject("mt_DangNhap.Image")));
             this.mt_DangNhap.Name = "mt_DangNhap";
-            this.mt_DangNhap.Size = new System.Drawing.Size(180, 22);
+            this.mt_DangNhap.Size = new System.Drawing.Size(134, 22);
             this.mt_DangNhap.Text = "Đăng Nhập";
             // 
             // mt_DangXuat
             // 
             this.mt_DangXuat.Image = ((System.Drawing.Image)(resources.GetObject("mt_DangXuat.Image")));
             this.mt_DangXuat.Name = "mt_DangXuat";
-            this.mt_DangXuat.Size = new System.Drawing.Size(180, 22);
+            this.mt_DangXuat.Size = new System.Drawing.Size(134, 22);
             this.mt_DangXuat.Text = "Đăng Xuất";
             // 
             // panel_Login

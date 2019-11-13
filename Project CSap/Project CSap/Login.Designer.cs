@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_TenTaiKhoan = new System.Windows.Forms.TextBox();
@@ -35,6 +36,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_NutDangNhap = new System.Windows.Forms.Button();
             this.btn_DiTrangDangKy = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -63,6 +66,7 @@
             this.tb_TenTaiKhoan.Name = "tb_TenTaiKhoan";
             this.tb_TenTaiKhoan.Size = new System.Drawing.Size(350, 20);
             this.tb_TenTaiKhoan.TabIndex = 2;
+            this.tb_TenTaiKhoan.Leave += new System.EventHandler(this.tb_TenTaiKhoan_Leave);
             // 
             // tb_MatKhau
             // 
@@ -71,6 +75,7 @@
             this.tb_MatKhau.PasswordChar = '*';
             this.tb_MatKhau.Size = new System.Drawing.Size(350, 20);
             this.tb_MatKhau.TabIndex = 3;
+            this.tb_MatKhau.Leave += new System.EventHandler(this.tb_TenTaiKhoan_Leave);
             // 
             // label3
             // 
@@ -90,6 +95,7 @@
             this.btn_NutDangNhap.TabIndex = 5;
             this.btn_NutDangNhap.Text = "Đăng Nhập";
             this.btn_NutDangNhap.UseVisualStyleBackColor = true;
+            this.btn_NutDangNhap.Click += new System.EventHandler(this.btn_NutDangNhap_Click);
             // 
             // btn_DiTrangDangKy
             // 
@@ -100,6 +106,10 @@
             this.btn_DiTrangDangKy.Text = "Đi Đến Trang Đăng Ký";
             this.btn_DiTrangDangKy.UseVisualStyleBackColor = true;
             this.btn_DiTrangDangKy.Click += new System.EventHandler(this.btn_DiTrangDangKy_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // Login
             // 
@@ -116,6 +126,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
             this.Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,5 +141,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_NutDangNhap;
         public System.Windows.Forms.Button btn_DiTrangDangKy;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
