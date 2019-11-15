@@ -52,5 +52,39 @@ namespace Project_CSap
             
             //a.Image = new Bitmap(Application.StartupPath + "\\Resource\\1.jpg");
         }
+        private void greenmove(Control c)
+        {
+            this.panel_green.Height = c.Height;
+            this.panel_green.Top = c.Top;
+        }
+        private void btn_Them_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Them);
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Xoa);
+        }
+
+        private void btn_Sua_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Sua);
+        }
+
+        private void btn_Luu_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Luu);
+        }
+
+        private void btn_Capnhat_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Capnhat);
+        }
+
+        private void btn_Inhoadon_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Inhoadon);
+        }
     }
 }
