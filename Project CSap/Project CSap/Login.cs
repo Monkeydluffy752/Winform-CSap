@@ -59,5 +59,9 @@ namespace Project_CSap
             }
         }
 
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
