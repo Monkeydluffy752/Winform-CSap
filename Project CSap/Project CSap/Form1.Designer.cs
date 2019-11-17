@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mt_DangXuat = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_Login = new System.Windows.Forms.Panel();
             this.panel_Bangnoidung2 = new System.Windows.Forms.Panel();
+            this.textBox_ProductSoLuong = new System.Windows.Forms.TextBox();
+            this.label_So = new System.Windows.Forms.Label();
+            this.comboBox_ProductHang = new System.Windows.Forms.ComboBox();
+            this.comboBox_ProductLoai = new System.Windows.Forms.ComboBox();
+            this.label_ = new System.Windows.Forms.Label();
+            this.label_ProductLoai = new System.Windows.Forms.Label();
             this.textBox_productGiaSP = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_productMota = new System.Windows.Forms.TextBox();
@@ -51,10 +58,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.btn_Hienbangtimkiem = new System.Windows.Forms.Button();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.btn_Capnhat = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.btn_Luu = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btn_Sua = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -66,10 +69,11 @@
             this.panel_green = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label_ProductLoai = new System.Windows.Forms.Label();
-            this.label_ = new System.Windows.Forms.Label();
-            this.comboBox_ProductLoai = new System.Windows.Forms.ComboBox();
-            this.comboBox_ProductHang = new System.Windows.Forms.ComboBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.button_ThemHinhAnh = new System.Windows.Forms.Button();
+            this.label_TenFileHinhAnh = new System.Windows.Forms.Label();
+            this.btn_Clear = new System.Windows.Forms.Button();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel_Login.SuspendLayout();
             this.panel_Bangnoidung2.SuspendLayout();
@@ -80,12 +84,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_bangnoidung)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -133,6 +137,12 @@
             // panel_Bangnoidung2
             // 
             this.panel_Bangnoidung2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            this.panel_Bangnoidung2.Controls.Add(this.pictureBox8);
+            this.panel_Bangnoidung2.Controls.Add(this.btn_Clear);
+            this.panel_Bangnoidung2.Controls.Add(this.label_TenFileHinhAnh);
+            this.panel_Bangnoidung2.Controls.Add(this.button_ThemHinhAnh);
+            this.panel_Bangnoidung2.Controls.Add(this.textBox_ProductSoLuong);
+            this.panel_Bangnoidung2.Controls.Add(this.label_So);
             this.panel_Bangnoidung2.Controls.Add(this.comboBox_ProductHang);
             this.panel_Bangnoidung2.Controls.Add(this.comboBox_ProductLoai);
             this.panel_Bangnoidung2.Controls.Add(this.label_);
@@ -151,12 +161,72 @@
             this.panel_Bangnoidung2.TabIndex = 2;
             this.panel_Bangnoidung2.Visible = false;
             // 
+            // textBox_ProductSoLuong
+            // 
+            this.textBox_ProductSoLuong.Location = new System.Drawing.Point(974, 142);
+            this.textBox_ProductSoLuong.Multiline = true;
+            this.textBox_ProductSoLuong.Name = "textBox_ProductSoLuong";
+            this.textBox_ProductSoLuong.Size = new System.Drawing.Size(263, 20);
+            this.textBox_ProductSoLuong.TabIndex = 15;
+            this.textBox_ProductSoLuong.Leave += new System.EventHandler(this.textBox_productTen_Leave);
+            // 
+            // label_So
+            // 
+            this.label_So.AutoSize = true;
+            this.label_So.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_So.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label_So.Location = new System.Drawing.Point(836, 142);
+            this.label_So.Name = "label_So";
+            this.label_So.Size = new System.Drawing.Size(85, 21);
+            this.label_So.TabIndex = 14;
+            this.label_So.Text = "Số Lượng";
+            // 
+            // comboBox_ProductHang
+            // 
+            this.comboBox_ProductHang.FormattingEnabled = true;
+            this.comboBox_ProductHang.Location = new System.Drawing.Point(974, 79);
+            this.comboBox_ProductHang.Name = "comboBox_ProductHang";
+            this.comboBox_ProductHang.Size = new System.Drawing.Size(263, 23);
+            this.comboBox_ProductHang.TabIndex = 13;
+            this.comboBox_ProductHang.SelectedIndexChanged += new System.EventHandler(this.comboBox_ProductHang_SelectedIndexChanged);
+            // 
+            // comboBox_ProductLoai
+            // 
+            this.comboBox_ProductLoai.FormattingEnabled = true;
+            this.comboBox_ProductLoai.Location = new System.Drawing.Point(974, 13);
+            this.comboBox_ProductLoai.Name = "comboBox_ProductLoai";
+            this.comboBox_ProductLoai.Size = new System.Drawing.Size(263, 23);
+            this.comboBox_ProductLoai.TabIndex = 12;
+            // 
+            // label_
+            // 
+            this.label_.AutoSize = true;
+            this.label_.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label_.Location = new System.Drawing.Point(836, 79);
+            this.label_.Name = "label_";
+            this.label_.Size = new System.Drawing.Size(140, 21);
+            this.label_.TabIndex = 11;
+            this.label_.Text = "Hãng Sản Phẩm";
+            // 
+            // label_ProductLoai
+            // 
+            this.label_ProductLoai.AutoSize = true;
+            this.label_ProductLoai.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ProductLoai.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label_ProductLoai.Location = new System.Drawing.Point(836, 14);
+            this.label_ProductLoai.Name = "label_ProductLoai";
+            this.label_ProductLoai.Size = new System.Drawing.Size(131, 21);
+            this.label_ProductLoai.TabIndex = 8;
+            this.label_ProductLoai.Text = "Loại Sản Phẩm";
+            // 
             // textBox_productGiaSP
             // 
             this.textBox_productGiaSP.Location = new System.Drawing.Point(393, 345);
             this.textBox_productGiaSP.Name = "textBox_productGiaSP";
             this.textBox_productGiaSP.Size = new System.Drawing.Size(422, 21);
             this.textBox_productGiaSP.TabIndex = 6;
+            this.textBox_productGiaSP.Leave += new System.EventHandler(this.textBox_productTen_Leave);
             // 
             // label4
             // 
@@ -177,6 +247,7 @@
             this.textBox_productMota.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_productMota.Size = new System.Drawing.Size(422, 223);
             this.textBox_productMota.TabIndex = 4;
+            this.textBox_productMota.Leave += new System.EventHandler(this.textBox_productTen_Leave);
             // 
             // label3
             // 
@@ -207,6 +278,7 @@
             this.textBox_productTen.Name = "textBox_productTen";
             this.textBox_productTen.Size = new System.Drawing.Size(422, 20);
             this.textBox_productTen.TabIndex = 1;
+            this.textBox_productTen.Leave += new System.EventHandler(this.textBox_productTen_Leave);
             // 
             // pic_product
             // 
@@ -306,10 +378,6 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
             this.panel1.Controls.Add(this.pictureBox7);
             this.panel1.Controls.Add(this.btn_Hienbangtimkiem);
-            this.panel1.Controls.Add(this.pictureBox6);
-            this.panel1.Controls.Add(this.btn_Capnhat);
-            this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.btn_Luu);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.btn_Sua);
             this.panel1.Controls.Add(this.pictureBox3);
@@ -330,7 +398,7 @@
             this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
             this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(15, 230);
+            this.pictureBox7.Location = new System.Drawing.Point(16, 154);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(25, 25);
             this.pictureBox7.TabIndex = 14;
@@ -343,7 +411,7 @@
             this.btn_Hienbangtimkiem.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Hienbangtimkiem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Hienbangtimkiem.ImageIndex = 0;
-            this.btn_Hienbangtimkiem.Location = new System.Drawing.Point(12, 227);
+            this.btn_Hienbangtimkiem.Location = new System.Drawing.Point(12, 151);
             this.btn_Hienbangtimkiem.Name = "btn_Hienbangtimkiem";
             this.btn_Hienbangtimkiem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btn_Hienbangtimkiem.Size = new System.Drawing.Size(185, 32);
@@ -351,60 +419,6 @@
             this.btn_Hienbangtimkiem.Text = "On/Off Tìm Kiếm";
             this.btn_Hienbangtimkiem.UseVisualStyleBackColor = false;
             this.btn_Hienbangtimkiem.Click += new System.EventHandler(this.btn_Hienbangtimkiem_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(15, 154);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox6.TabIndex = 12;
-            this.pictureBox6.TabStop = false;
-            // 
-            // btn_Capnhat
-            // 
-            this.btn_Capnhat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btn_Capnhat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Capnhat.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Capnhat.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_Capnhat.ImageIndex = 0;
-            this.btn_Capnhat.Location = new System.Drawing.Point(12, 151);
-            this.btn_Capnhat.Name = "btn_Capnhat";
-            this.btn_Capnhat.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btn_Capnhat.Size = new System.Drawing.Size(185, 32);
-            this.btn_Capnhat.TabIndex = 11;
-            this.btn_Capnhat.Text = "Cập Nhật";
-            this.btn_Capnhat.UseVisualStyleBackColor = false;
-            this.btn_Capnhat.Click += new System.EventHandler(this.btn_Capnhat_Click);
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(15, 116);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox5.TabIndex = 10;
-            this.pictureBox5.TabStop = false;
-            // 
-            // btn_Luu
-            // 
-            this.btn_Luu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.btn_Luu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_Luu.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Luu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_Luu.ImageIndex = 0;
-            this.btn_Luu.Location = new System.Drawing.Point(12, 113);
-            this.btn_Luu.Name = "btn_Luu";
-            this.btn_Luu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btn_Luu.Size = new System.Drawing.Size(185, 32);
-            this.btn_Luu.TabIndex = 9;
-            this.btn_Luu.Text = "Lưu";
-            this.btn_Luu.UseVisualStyleBackColor = false;
-            this.btn_Luu.Click += new System.EventHandler(this.btn_Luu_Click);
             // 
             // pictureBox4
             // 
@@ -465,7 +479,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(15, 192);
+            this.pictureBox2.Location = new System.Drawing.Point(15, 116);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(25, 25);
             this.pictureBox2.TabIndex = 4;
@@ -478,7 +492,7 @@
             this.btn_Inhoadon.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Inhoadon.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btn_Inhoadon.ImageIndex = 0;
-            this.btn_Inhoadon.Location = new System.Drawing.Point(12, 189);
+            this.btn_Inhoadon.Location = new System.Drawing.Point(12, 113);
             this.btn_Inhoadon.Name = "btn_Inhoadon";
             this.btn_Inhoadon.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btn_Inhoadon.Size = new System.Drawing.Size(185, 32);
@@ -531,43 +545,56 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // label_ProductLoai
+            // errorProvider1
             // 
-            this.label_ProductLoai.AutoSize = true;
-            this.label_ProductLoai.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ProductLoai.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label_ProductLoai.Location = new System.Drawing.Point(836, 14);
-            this.label_ProductLoai.Name = "label_ProductLoai";
-            this.label_ProductLoai.Size = new System.Drawing.Size(131, 21);
-            this.label_ProductLoai.TabIndex = 8;
-            this.label_ProductLoai.Text = "Loại Sản Phẩm";
+            this.errorProvider1.ContainerControl = this;
             // 
-            // label_
+            // button_ThemHinhAnh
             // 
-            this.label_.AutoSize = true;
-            this.label_.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label_.Location = new System.Drawing.Point(836, 79);
-            this.label_.Name = "label_";
-            this.label_.Size = new System.Drawing.Size(140, 21);
-            this.label_.TabIndex = 11;
-            this.label_.Text = "Hãng Sản Phẩm";
+            this.button_ThemHinhAnh.Location = new System.Drawing.Point(0, 303);
+            this.button_ThemHinhAnh.Name = "button_ThemHinhAnh";
+            this.button_ThemHinhAnh.Size = new System.Drawing.Size(174, 23);
+            this.button_ThemHinhAnh.TabIndex = 16;
+            this.button_ThemHinhAnh.Text = "Thêm Hình Ảnh";
+            this.button_ThemHinhAnh.UseVisualStyleBackColor = true;
+            this.button_ThemHinhAnh.Click += new System.EventHandler(this.button_ThemHinhAnh_Click);
             // 
-            // comboBox_ProductLoai
+            // label_TenFileHinhAnh
             // 
-            this.comboBox_ProductLoai.FormattingEnabled = true;
-            this.comboBox_ProductLoai.Location = new System.Drawing.Point(974, 13);
-            this.comboBox_ProductLoai.Name = "comboBox_ProductLoai";
-            this.comboBox_ProductLoai.Size = new System.Drawing.Size(263, 23);
-            this.comboBox_ProductLoai.TabIndex = 12;
+            this.label_TenFileHinhAnh.AutoSize = true;
+            this.label_TenFileHinhAnh.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_TenFileHinhAnh.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label_TenFileHinhAnh.Location = new System.Drawing.Point(3, 268);
+            this.label_TenFileHinhAnh.Name = "label_TenFileHinhAnh";
+            this.label_TenFileHinhAnh.Size = new System.Drawing.Size(0, 21);
+            this.label_TenFileHinhAnh.TabIndex = 17;
             // 
-            // comboBox_ProductHang
+            // btn_Clear
             // 
-            this.comboBox_ProductHang.FormattingEnabled = true;
-            this.comboBox_ProductHang.Location = new System.Drawing.Point(974, 79);
-            this.comboBox_ProductHang.Name = "comboBox_ProductHang";
-            this.comboBox_ProductHang.Size = new System.Drawing.Size(263, 23);
-            this.comboBox_ProductHang.TabIndex = 13;
+            this.btn_Clear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            this.btn_Clear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Clear.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Clear.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_Clear.ImageIndex = 0;
+            this.btn_Clear.Location = new System.Drawing.Point(909, 207);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btn_Clear.Size = new System.Drawing.Size(124, 32);
+            this.btn_Clear.TabIndex = 15;
+            this.btn_Clear.Text = "Làm Mới";
+            this.btn_Clear.UseVisualStyleBackColor = false;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox8.Location = new System.Drawing.Point(911, 210);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox8.TabIndex = 15;
+            this.pictureBox8.TabStop = false;
             // 
             // Form1
             // 
@@ -597,12 +624,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_bangnoidung)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,10 +647,6 @@
         private System.Windows.Forms.Button btn_Them;
         private System.Windows.Forms.Panel panel_green;
         private System.Windows.Forms.Button btn_Xoa;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Button btn_Capnhat;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button btn_Luu;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btn_Sua;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -650,6 +673,13 @@
         private System.Windows.Forms.Label label_ProductLoai;
         private System.Windows.Forms.ComboBox comboBox_ProductHang;
         private System.Windows.Forms.ComboBox comboBox_ProductLoai;
+        private System.Windows.Forms.TextBox textBox_ProductSoLuong;
+        private System.Windows.Forms.Label label_So;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button button_ThemHinhAnh;
+        private System.Windows.Forms.Label label_TenFileHinhAnh;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Button btn_Clear;
     }
 }
 

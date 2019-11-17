@@ -15,7 +15,7 @@ namespace Project_CSap
             SqlConnection connect = new SqlConnection(_Connect);
             DataTable table = new DataTable();
             SqlDataAdapter dapter = new SqlDataAdapter();
-            string SQLCommand = "Select ID_Products,NameProducts,DescriptionProducts,PriceProducts from Products";   
+            string SQLCommand = "Select ID_Products,NameProducts,DescriptionProducts,PriceProducts,ID_TypeProducts,ID_ManufaceProducts,QuantityProduct from Products";   
             dapter.SelectCommand = new SqlCommand(SQLCommand, connect);
             dapter.Fill(table);
             return table;
@@ -76,7 +76,43 @@ namespace Project_CSap
                 Console.WriteLine("Lỗi Thực Thi");
             }
         }
-        public DataTable HangSanPham(int i_ID)
+        public DataTable HangSanPham()
+        {
+            SqlConnection connect = new SqlConnection(_Connect);
+            connect.Open();
+            DataTable table = new DataTable();
+            SqlDataAdapter dapter = new SqlDataAdapter();
+            try
+            {
+                string SQLCommand = "Select Name_Type from ManufaceProducts";
+                dapter.SelectCommand = new SqlCommand(SQLCommand, connect);
+                dapter.Fill(table);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Lỗi Thực Thi");
+            }
+            return table;
+        }
+        public DataTable LoaiSanPham()
+        {
+            SqlConnection connect = new SqlConnection(_Connect);
+            connect.Open();
+            DataTable table = new DataTable();
+            SqlDataAdapter dapter = new SqlDataAdapter();
+            try
+            {
+                string SQLCommand = "Select TypeProducts.Name_Type from TypeProducts";
+                dapter.SelectCommand = new SqlCommand(SQLCommand, connect);
+                dapter.Fill(table);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Lỗi Thực Thi");
+            }
+            return table;
+        }
+        public string ChonHangSanPham(int i_ID)
         {
             SqlConnection connect = new SqlConnection(_Connect);
             connect.Open();
@@ -92,9 +128,9 @@ namespace Project_CSap
             {
                 Console.WriteLine("Lỗi Thực Thi");
             }
-            return table;
+            return table.Rows[0].ItemArray[0].ToString();
         }
-        public DataTable LoaiSanPham(int i_ID)
+        public string ChonLoaiSanPham(int i_ID)
         {
             SqlConnection connect = new SqlConnection(_Connect);
             connect.Open();
@@ -110,11 +146,18 @@ namespace Project_CSap
             {
                 Console.WriteLine("Lỗi Thực Thi");
             }
-            return table;
+            return table.Rows[0].ItemArray[0].ToString();
         }
-        //public void Them(int ID_Products,string NameProducts,string DescriptionProducts,)
-        //{
+        public void insert(string NameProducts,string DescriptionProducts,string PicturesProducts,int GiaSP , int ID_TypeProducts,int ID_ManufaceProducts, int QuantityProduct)
+        {
+            SqlConnection connect = new SqlConnection(_Connect);
+            connect.Open();
+            DataTable table = new DataTable();
+            SqlDataAdapter dapter = new SqlDataAdapter();
+            string SQLCommand = "insert into Products(NameProducts,DescriptionProducts,PicturesProducts,PriceProducts,ID_TypeProducts,ID_ManufaceProducts,QuantityProduct) values(N'" + NameProducts + "',N'" + DescriptionProducts + "',N'" + PicturesProducts + "'," + GiaSP + "," + ID_TypeProducts + "," + ID_ManufaceProducts + "," + QuantityProduct + ")";
+            SqlCommand command = new SqlCommand(SQLCommand, connect);
+            command.ExecuteNonQuery();
+        }
 
-        //}
     }
 }
