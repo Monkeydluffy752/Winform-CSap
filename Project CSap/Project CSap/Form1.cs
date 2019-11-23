@@ -47,7 +47,9 @@ namespace Project_CSap
 
 
         }
-
+        public static bool onAndoff = true;
+        public static bool clickClear = false;
+        public static string PathHoaDon = "";
         private void button1_Click(object sender, EventArgs e)
         {
             PictureBox a = new PictureBox();
@@ -68,49 +70,56 @@ namespace Project_CSap
         {
             greenmove(btn_Them);
             ConnectData connect = new ConnectData();
-            if(this.comboBox_ProductHang.Text.Length == 0 && this.comboBox_ProductLoai.Text.Length == 0 && this.textBox_productTen.Text.Length == 0 && this.textBox_productMota.Text.Length == 0 && this.textBox_productGiaSP.Text.Length == 0 && this.textBox_ProductSoLuong.Text.Length == 0)
+            if(clickClear == true)
             {
-                MessageBox.Show("Còn Ô Trống", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                // ADD hình ảnh
-                string pathName = this.label_TenFileHinhAnh.Text;
-                string LastNameofPath = pathName.Substring(pathName.LastIndexOf(@"\") + 1); // Lấy Tên Ảnh
-                int num = 0;
-                if (Int32.TryParse(textBox_productGiaSP.Text, out num) && Int32.TryParse(this.textBox_ProductSoLuong.Text, out num))
-                {     
-                    int convertGiaSP = int.Parse(textBox_productGiaSP.Text);
-                    int convertLoai = int.Parse(this.comboBox_ProductLoai.SelectedIndex.ToString());
-                    int convertHang = int.Parse(this.comboBox_ProductHang.SelectedIndex.ToString());
-                    int convertSoLuong = int.Parse(this.textBox_ProductSoLuong.Text);
-                   try
-                    {
-                        connect.insert(textBox_productTen.Text, textBox_productMota.Text, LastNameofPath, convertGiaSP, convertLoai, convertHang, convertSoLuong);
-                        load();
-                        clear();
-                    }
-                    catch(Exception)
-                    {
-                        MessageBox.Show("Lỗi Thêm Vào");
-                    }
-                    //Thêm Hình Ảnh Vào Source
-                    try
-                    {
-                        File.Copy(pathName, Path.Combine(@"C:\Users\PC\source\repos\Winform-CSap\Project CSap\Project CSap\bin\Debug\Resource", Path.GetFileName(pathName)), true);
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Đường Dẫn Hình Ảnh Sai");
-                    }
+                if (this.comboBox_ProductHang.Text.Length == 0 && this.comboBox_ProductLoai.Text.Length == 0 && this.textBox_productTen.Text.Length == 0 && this.textBox_productMota.Text.Length == 0 && this.textBox_productGiaSP.Text.Length == 0 && this.textBox_ProductSoLuong.Text.Length == 0)
+                {
+                    MessageBox.Show("Còn Ô Trống", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Số Lượng và Giá SP Phải là kiểu số");
+                    // ADD hình ảnh
+                    string pathName = this.label_TenFileHinhAnh.Text;
+                    string LastNameofPath = pathName.Substring(pathName.LastIndexOf(@"\") + 1); // Lấy Tên Ảnh
+                    int num = 0;
+                    if (Int32.TryParse(textBox_productGiaSP.Text, out num) && Int32.TryParse(this.textBox_ProductSoLuong.Text, out num))
+                    {
+                        int convertGiaSP = int.Parse(textBox_productGiaSP.Text);
+                        int convertLoai = int.Parse(this.comboBox_ProductLoai.SelectedIndex.ToString());
+                        int convertHang = int.Parse(this.comboBox_ProductHang.SelectedIndex.ToString());
+                        int convertSoLuong = int.Parse(this.textBox_ProductSoLuong.Text);
+                        try
+                        {
+                            connect.insert(textBox_productTen.Text, textBox_productMota.Text, LastNameofPath, convertGiaSP, convertLoai, convertHang, convertSoLuong);
+                            load();
+                            clear();
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Lỗi Thêm Vào");
+                        }
+                        //Thêm Hình Ảnh Vào Source
+                        try
+                        {
+                            File.Copy(pathName, Path.Combine(Application.StartupPath + "\\Resource", Path.GetFileName(pathName)), true);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Đường Dẫn Hình Ảnh Sai");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Số Lượng và Giá SP Phải là kiểu số");
+                    }
                 }
+                clickClear = false;
+            }
+            else
+            {
+                MessageBox.Show("Phải Làm Mới Trước khi thêm");
             }
         }
-
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
             greenmove(btn_Xoa);
@@ -137,12 +146,48 @@ namespace Project_CSap
         private void btn_Sua_Click(object sender, EventArgs e)
         {
             greenmove(btn_Sua);
+            int i = dgv_bangnoidung.CurrentRow.Index;
+            ConnectData connect = new ConnectData();
+            int convertID = int.Parse(dgv_bangnoidung.Rows[i].Cells[0].Value.ToString());
+            string oldPathImg = dgv_bangnoidung.Rows[i].Cells[7].Value.ToString();
+            if (this.textBox_productTen.Text.Length > 0 && this.textBox_productMota.Text.Length > 0 && this.textBox_productGiaSP.Text.Length > 0 && comboBox_ProductLoai.Text.Length > 0 && comboBox_ProductHang.Text.Length > 0&& textBox_ProductSoLuong.Text.Length > 0)
+            {
+                int convertGia = int.Parse(textBox_productGiaSP.Text);
+                int convertLoai = comboBox_ProductLoai.SelectedIndex+1;
+                int convertHang = comboBox_ProductHang.SelectedIndex+1;
+                int convertSoLuong = int.Parse(textBox_ProductSoLuong.Text);
+                string name = this.textBox_productTen.Text;
+                string description = this.textBox_productMota.Text;
+                string pathName = this.label_TenFileHinhAnh.Text;
+                string LastNameofPath = "";
+                if (this.label_TenFileHinhAnh.Text.Length > 0)
+                {
+                     LastNameofPath = pathName.Substring(pathName.LastIndexOf(@"\") + 1); // Lấy Tên Ảnh
+                    try
+                    {
+
+                        File.Copy(pathName, Path.Combine(Application.StartupPath + "\\Resource", Path.GetFileName(pathName)), true);
+                        load();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Lỗi Đường Dẫn");
+                    }
+                    connect.update(convertID, name, description, LastNameofPath, convertGia, convertLoai, convertHang, convertSoLuong);
+                }
+                else
+                {
+                    connect.update(convertID, name, description, oldPathImg, convertGia, convertLoai, convertHang, convertSoLuong);
+                    load();
+                }
+
+                MessageBox.Show("Sửa Thành Công", "Thông Báo");
+            }
+            else
+            {
+                MessageBox.Show("Thiếu Thông Tin ");
+            }
         }
-        private void btn_Inhoadon_Click(object sender, EventArgs e)
-        {
-            greenmove(btn_Inhoadon);
-        }
-        public static bool onAndoff = true;
         private void btn_Hienbangtimkiem_Click(object sender, EventArgs e)
         {
             greenmove(btn_Hienbangtimkiem);
@@ -240,6 +285,7 @@ namespace Project_CSap
 
         private void btn_Clear_Click(object sender, EventArgs e)
         {
+            clickClear = true;
             clear();
         }
         private void clear()
@@ -252,6 +298,164 @@ namespace Project_CSap
             this.textBox_ProductSoLuong.Text = "";
             this.comboBox_ProductLoai.Text = "";
             this.comboBox_ProductHang.Text = "";
+        }
+
+        private void btn_Timkiem_Click(object sender, EventArgs e)
+        {
+            if(this.textBox_TimKiem.Text.Length > 0)
+            {
+                try
+                {
+
+                    ConnectData connect = new ConnectData();
+                    dgv_bangnoidung.DataSource = connect.Search(this.textBox_TimKiem.Text);
+
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Dữ Liệu Nhập Bị Sai Hoặc Không Tồn Tại","Thông Báo",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn Chưa Nhập Dữ Liệu Vào Khung Tìm Kiếm", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn_Luuhoadon_Click(object sender, EventArgs e)
+        {
+            greenmove(btn_Luuhoadon);
+            bool LuuSP = false;
+            if (this.textBox_productTen.Text.Length > 0 && this.textBox_productMota.Text.Length > 0 && this.textBox_productGiaSP.Text.Length > 0 && this.comboBox_ProductLoai.Text.Length > 0 && this.comboBox_ProductHang.Text.Length > 0 && this.textBox_ProductSoLuong.Text.Length > 0)
+            {
+                if (File.Exists(PathHoaDon))
+                {
+                    try
+                    {
+                        FileStream file = new FileStream(PathHoaDon, FileMode.Append);
+                        StreamWriter writeAppend = new StreamWriter(file);
+                        DateTime aDateTime = DateTime.Now;
+                        writeAppend.WriteLine("Tên Sản Phẩm: " + this.textBox_productTen.Text);
+                        writeAppend.WriteLine("Tên Mô Tả: " + this.textBox_productMota.Text);
+                        writeAppend.WriteLine("Giá SP: " + this.textBox_productGiaSP.Text);
+                        writeAppend.WriteLine("Loại SP: " + this.comboBox_ProductLoai.Text);
+                        writeAppend.WriteLine("Hãng SP: " + this.comboBox_ProductHang.Text);
+                        writeAppend.WriteLine("Số Lượng: " + this.textBox_ProductSoLuong.Text);
+                        writeAppend.WriteLine("Ngày Thanh Toán: " + aDateTime);
+                        writeAppend.WriteLine("-----------------------------------------------");
+                        writeAppend.Close();
+                        file.Close();
+                        string[] In = File.ReadAllLines(PathHoaDon);
+                        int locationSelection = dgv_bangnoidung.CurrentRow.Index;
+                        string strImg = dgv_bangnoidung.Rows[locationSelection].Cells[7].Value.ToString();
+                        MessageBox.Show(strImg);
+                        for (int i = 0; i < In.Length; i++)
+                        {
+                            if (In[i].Contains(dgv_bangnoidung.Rows[locationSelection].Cells[1].Value.ToString()))
+                            {
+                                MessageBox.Show(In[i].ToString());
+                                this.textBox_TenSP.Text = In[i].ToString();
+                                this.textBox_MoTaSP.Text = In[i + 1].ToString();
+                                this.textBox_GiaSP.Text = In[i + 2].ToString();
+                                this.textBox_LoaiSP.Text = In[i + 3].ToString();
+                                this.textBox_HangSP.Text = In[i + 4].ToString();
+                                this.textBox_LuongSP.Text = In[i + 5].ToString();
+                                this.textBox_NgayVaGio.Text = In[i + 6].ToString();
+                                try
+                                {
+                                    pictureBox_SP.Image = new Bitmap(Application.StartupPath + "\\Resource\\" + strImg);
+                                }
+                                catch (FileLoadException)
+                                {
+                                    MessageBox.Show("Không Thể Load File", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                this.panel_HoaDon.Visible = true;
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("Quá Trình Vẫn Đang Xử Lý");
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        SaveFileDialog fileOpen = new SaveFileDialog();
+                        fileOpen.Filter = "|*.txt";
+                        if (fileOpen.ShowDialog() == DialogResult.OK)
+                        {
+                            Stream file = fileOpen.OpenFile();
+                            StreamWriter write = new StreamWriter(file);
+                            DateTime aDateTime = DateTime.Now;
+                            write.WriteLine("Tên Sản Phẩm: " + this.textBox_productTen.Text);
+                            write.WriteLine("Tên Mô Tả: " + this.textBox_productMota.Text);
+                            write.WriteLine("Giá SP: " + this.textBox_productGiaSP.Text);
+                            write.WriteLine("Loại SP: " + this.comboBox_ProductLoai.Text);
+                            write.WriteLine("Hãng SP: " + this.comboBox_ProductHang.Text);
+                            write.WriteLine("Số Lượng: " + this.textBox_ProductSoLuong.Text);
+                            write.WriteLine("Ngày Thanh Toán: " + aDateTime);
+                            write.WriteLine("-----------------------------------------------");
+                            PathHoaDon = fileOpen.FileName.ToString();
+                            this.Text = PathHoaDon;
+                            if (File.Exists(PathHoaDon))
+                            {
+                                MessageBox.Show("Đã Lưu Hóa Đơn Thành Công");
+                                LuuSP = true;
+                            }
+                            write.Close();
+                            file.Close();
+                            if (LuuSP == true)
+                            {
+                                int selectedLocationImg = dgv_bangnoidung.CurrentRow.Index;
+                                string[] ShowAllProduct = File.ReadAllLines(fileOpen.FileName);
+                                string strImg = dgv_bangnoidung.Rows[selectedLocationImg].Cells[7].Value.ToString();
+                                for (int i = 0; i< ShowAllProduct.Length;i++)
+                                {
+                                    if(ShowAllProduct[i].Contains(this.textBox_productTen.Text))
+                                    {
+                                        this.panel_HoaDon.Visible = true;
+                                        this.textBox_TenSP.Text = ShowAllProduct[i].ToString();
+                                        this.textBox_MoTaSP.Text = ShowAllProduct[i+1].ToString();
+                                        this.textBox_GiaSP.Text = ShowAllProduct[i + 2].ToString();
+                                        this.textBox_LoaiSP.Text = ShowAllProduct[i + 3].ToString();
+                                        this.textBox_HangSP.Text = ShowAllProduct[i + 4].ToString();
+                                        this.textBox_LuongSP.Text = ShowAllProduct[i + 5].ToString();
+                                        this.textBox_NgayVaGio.Text = ShowAllProduct[i + 6].ToString();
+                                        try
+                                        {
+                                            pictureBox_SP.Image = new Bitmap(Application.StartupPath + "\\Resource\\" + strImg);
+                                        }catch(FileLoadException)
+                                        {
+                                            MessageBox.Show("Không Thể Load File", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+                            }
+                        }                       
+                    }
+                    catch (IOException)
+                    {
+                        MessageBox.Show("Lỗi Đường Dẫn,Bạn Nên Xem Lại");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn Chưa Chọn Sản Phẩm Để Thanh Toán", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.panel_HoaDon.Visible = false;
         }
     }
 }

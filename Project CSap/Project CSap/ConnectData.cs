@@ -15,7 +15,7 @@ namespace Project_CSap
             SqlConnection connect = new SqlConnection(_Connect);
             DataTable table = new DataTable();
             SqlDataAdapter dapter = new SqlDataAdapter();
-            string SQLCommand = "Select ID_Products,NameProducts,DescriptionProducts,PriceProducts,ID_TypeProducts,ID_ManufaceProducts,QuantityProduct from Products";   
+            string SQLCommand = "Select ID_Products,NameProducts,DescriptionProducts,PriceProducts,ID_TypeProducts,ID_ManufaceProducts,QuantityProduct,PicturesProducts from Products";   
             dapter.SelectCommand = new SqlCommand(SQLCommand, connect);
             dapter.Fill(table);
             return table;
@@ -158,6 +158,26 @@ namespace Project_CSap
             SqlCommand command = new SqlCommand(SQLCommand, connect);
             command.ExecuteNonQuery();
         }
-
+        public void update(int id_Product ,string NameProduct,string DescriptionProduct,string picture,int price,int ID_TypeProducts,int ID_ManufaceProducts,int QuantityProduct)
+        {
+            SqlConnection connect = new SqlConnection(_Connect);
+            connect.Open();
+            DataTable table = new DataTable();
+            SqlDataAdapter dapter = new SqlDataAdapter();
+            string SQLCommand = "Update Products set NameProducts = N'"+ NameProduct + "',DescriptionProducts = N'"+ DescriptionProduct + "',PicturesProducts = N'"+ picture + "',PriceProducts = "+ price + ",ID_TypeProducts = "+ ID_TypeProducts + ",ID_ManufaceProducts = "+ ID_ManufaceProducts + ",QuantityProduct  = "+ QuantityProduct + "  where ID_Products = "+ id_Product + "";
+            SqlCommand command = new SqlCommand(SQLCommand, connect);
+            command.ExecuteNonQuery(); // thực thi câu lệnh
+        }
+        public DataTable Search(string TimKiem)
+        {
+            DataTable table = new DataTable();
+            SqlConnection connect = new SqlConnection(_Connect);
+            connect.Open();
+            SqlDataAdapter dapter = new SqlDataAdapter();
+            string SQLCommand = "select * from Products where Products.NameProducts like N'%"+ TimKiem + "%'";
+            dapter.SelectCommand = new SqlCommand(SQLCommand, connect);
+            dapter.Fill(table);
+            return table;
+        }
     }
 }
